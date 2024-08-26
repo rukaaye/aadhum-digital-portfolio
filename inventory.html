@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Inventory Journey</title>
+  <style>
+    body {
+      background: #f4f1e5;
+      font-family: 'Courier New', Courier, monospace;
+      color: #333;
+      padding: 20px;
+      line-height: 1.8;
+    }
+    .container {
+      margin: 20px 0;
+    }
+    .typed-out {
+      font-size: 1.2rem;
+      display: inline-block;
+      white-space: pre-wrap;
+      border-right: 0.15em solid black;
+      animation: blink-caret 0.75s step-end infinite;
+    }
+    .centered {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-top: 40px; /* additional spacing for aesthetic appeal */
+    }
+    @keyframes blink-caret {
+      from, to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: black;
+      }
+    }
+    blockquote {
+      font-size: 1.2em;
+      margin: 20px 0;
+      padding-left: 20px;
+      border-left: 5px solid #4CAF50; /* A shade of green for a more appealing look */
+      color: darkblue;
+      font-style: italic;
+    }
+    #continueButton {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    #continueButton:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Inventory Journey—</h1>
+  <div class="container">
+    <div class="typed-out" id="text1"></div>
+  </div>
+  <div class="container">
+    <div class="typed-out" id="text2"></div>
+  </div>
+  <div class="container">
+    <div class="typed-out" id="text3"></div>
+  </div>
+  <div class="container">
+    <div class="typed-out" id="text4"></div>
+  </div>
+  <div class="container">
+    <div class="typed-out" id="text5"></div>
+  </div>
+  <div class="container">
+    <div class="typed-out" id="text6"></div>
+  </div>
+  <div class="container">
+    <div class="typed-out" id="text7"></div>
+  </div>
+  <div class="container">
+    <div class="typed-out centered" id="text8"></div> <!-- New Container with centered text -->
+  </div>
+  <!-- Continue Button -->
+  <a id="continueButton" href="qaa.html">Continue to Q & A</a>
+  <script>
+    const texts = [
+      "Preface: There’s no fast-forward button, so sit tight. It's all part of the process. <blockquote>‘It’s all a part of the process.’ -Katelin Ten</blockquote>",
+      "The AADHum Lab: It was all fun and games until my first assignment: Inventory. It felt daunting—accounting for every piece of technology, artwork, and miscellaneous item in the studio room.",
+      "Labels, labels, labels—my initial instinct was to organize everything in sight, by first accounting for each item and then categorizing them to create what I thought was a more efficient landscape. However, my mentor, Katelin Ten, introduced a reverse strategy: understanding before labeling. This approach challenged my usual process, which had always seemed efficient and proven successful in the past. Why change what already works?",
+      "It felt like being told to do an extra 15 sit-ups. Sure, they're beneficial in the long run, but I’m already in good shape, right? Despite my reservations, I embraced these 'extra' mental sit-ups, developing new neural pathways by approaching this project differently.",
+      "Labeling second meant learning first. I began the tedious process of thoroughly accounting for every item, from a small Dongle Adapter for a stream controller to the large Snapmaker Artisan 3-in-1 3D Printer. Initially, I didn’t realize that understanding what things were and why they were there would help me grasp the bigger picture of their presence.",
+      "I had labeled myself an outsider, encountering a pre-established system that dictated item placement. Instead of dismantling and rearranging everything to fit my memory, I began to explore, adopting an anti-colonizer mentality. This approach not only deepened my understanding of each item's purpose, location, and significance but also transformed me from an outsider into an engaged explorer and anti-colonizer. Consequently, the inventory transformed into an ecosystem, with me as its careful documenter.",
+      "Sooo.. how do you feel? Are you upset that I took some of your time to read this the way I designed it, or are you glad for the space to engage with my journey in my own way?",
+      "Welcome to my ecosystem."
+    ];
+
+    function typeWriter(text, elementId, delay = 50) {
+      return new Promise((resolve) => {
+        let i = 0;
+        const element = document.getElementById(elementId);
+        function type() {
+          if (i < text.length) {
+            let char = text.charAt(i);
+            let substring;
+            if (char === '<') {
+              let endIndex = text.indexOf('>', i);
+              substring = text.substring(0, endIndex + 1);
+              i = endIndex;
+            } else {
+              substring = text.substring(0, i + 1);
+            }
+            element.innerHTML = substring;
+            i++;
+            setTimeout(type, delay);
+          } else {
+            resolve();
+          }
+        }
+        type();
+      });
+    }
+
+    async function startTyping() {
+      for (let i = 0; i < texts.length; i++) {
+        await typeWriter(texts[i], `text${i + 1}`);
+      }
+      document.getElementById("continueButton").style.display = "inline-block";
+    }
+
+    window.onload = startTyping;
+  </script>
+</body>
+</html>

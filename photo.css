@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+.text, .sidebar {
+    flex: 1;
+    padding: 20px;
+}
+.sidebar {
+    max-width: 300px; /* Adjust based on your preference */
+}
+.video-container {
+    width: 100%; /* Responsive video width */
+    height: auto; /* Maintain aspect ratio */
+}

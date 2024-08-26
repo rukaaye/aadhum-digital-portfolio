@@ -1,0 +1,30 @@
+body {
+    background: navajowhite;
+    font-family: 'Trebuchet MS', sans-serif;
+    padding: 20px;
+}
+
+.container {
+    display: inline-block;
+}
+
+.typed-out {
+    overflow: hidden;
+    border-right: 0.30em solid orange;
+    white-space: nowrap;
+    font-size: 1.1rem;
+    animation: 
+        typing 8s steps(80, end) forwards, /* Adjust the time and steps as needed */
+        blinking 1.2s infinite;
+    width: 0;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blinking {
+    from { border-color: transparent }
+    to { border-color: green; }
+}
